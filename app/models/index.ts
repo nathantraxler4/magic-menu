@@ -1,3 +1,3 @@
-import {Task} from './Task';
+import Recipe from './Recipe'
 
-export const schemas = [Task];
+export const schemas = [Recipe]

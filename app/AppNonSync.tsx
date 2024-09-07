@@ -1,22 +1,21 @@
-import React from 'react';
+import React from 'react'
+import Menu from './screens/Menu'
 
-import {Task} from './models/Task';
-import {TaskManager} from './components/TaskManager';
-
-import {useQuery} from '@realm/react';
+import localImage from './assets/images/dinnerMenuBright.webp'
 
 export const AppNonSync = () => {
-  const [showDone, setShowDone] = React.useState(false);
-  const tasks = useQuery(
-    Task,
-    collection =>
-      showDone
-        ? collection.sorted('createdAt')
-        : collection.filtered('isComplete == false').sorted('createdAt'),
-    [showDone],
-  );
+    // const [showDone, setShowDone] = React.useState(false);
+    // const tasks = useQuery(
+    //   Task,
+    //   collection =>
+    //     showDone
+    //       ? collection.sorted('createdAt')
+    //       : collection.filtered('isComplete == false').sorted('createdAt'),
+    //   [showDone],
+    // );
 
-  return (
-    <TaskManager tasks={tasks} setShowDone={setShowDone} showDone={showDone} />
-  );
-};
+    return (
+    // <TaskManager tasks={tasks} setShowDone={setShowDone} showDone={showDone} />
+        <Menu backgroundImage={localImage}/>
+    )
+}
