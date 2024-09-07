@@ -5,6 +5,7 @@ import { useRealm, useQuery } from '@realm/react'
 import Recipe from '../models/Recipe'
 import * as recipeRepo from '../repositories/recipe'
 import PropTypes from 'prop-types'
+import recipesJson from '../assets/json/recipes.json'
 
 const Menu = ({ backgroundImage }) => {
     // const [dinnerMenu, setDinnerMenu] = useState(null)
@@ -16,14 +17,13 @@ const Menu = ({ backgroundImage }) => {
     console.log(recipes.length)
 
     const handleAddRecipe = () => {
-        const r = {
-            name: `Recipe ${recipes.length + 1}`,
-            directions: "These are directions!",
-            ingredients: "ingredients",
-            userId: 'Nathan'  
+        if (recipes.length < 3) {
+            const record = { userId: 'Nathan', ...recipesJson[recipes.length]}
+            recipeRepo.insertRecipes(realm, [record])
+        } else {
+            recipeRepo.deleteRecipes(realm, recipes)
         }
-        recipeRepo.insertRecipes(realm, [r])
-    // recipeRepo.deleteRecipes(realm, [recipes])
+        
     }
 
     // const fetchData = async () => {
@@ -48,6 +48,7 @@ const Menu = ({ backgroundImage }) => {
     //   return <ActivityIndicator size="large" />;
     // }
 
+
     return (
         <ImageBackground
             source={backgroundImage}
@@ -56,7 +57,8 @@ const Menu = ({ backgroundImage }) => {
         >
             <Button
                 onPress={() => handleAddRecipe()}
-                title='Add Person'	      />
+                title='Add Recipe'	      
+            />
             <View style={styles.container}>
                 <FlatList
                     data={recipes}
