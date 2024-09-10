@@ -14,11 +14,12 @@ const Menu = ({ backgroundImage }) => {
     const realm = useRealm()
 
     const recipes = useQuery(Recipe)
-    console.log(recipes.length)
+    console.log(recipes)
 
     const handleAddRecipe = () => {
         if (recipes.length < 3) {
             const record = { userId: 'Nathan', ...recipesJson[recipes.length]}
+            console.log(record)
             recipeRepo.insertRecipes(realm, [record])
         } else {
             recipeRepo.deleteRecipes(realm, recipes)
@@ -48,7 +49,6 @@ const Menu = ({ backgroundImage }) => {
     //   return <ActivityIndicator size="large" />;
     // }
 
-
     return (
         <ImageBackground
             source={backgroundImage}
@@ -66,8 +66,8 @@ const Menu = ({ backgroundImage }) => {
                     renderItem={({ item }) => (
                         <View style={styles.menuItem}>
                             <Text style={styles.title}>{item.name}</Text>
-                            <Text style={styles.dish}>{item.ingredients}</Text>
-                            <Text style={styles.description}>{item.directions}</Text>
+                            <Text style={styles.dish}>{item.ingredients[0]}</Text>
+                            <Text style={styles.description}>{item.directions[0]}</Text>
                         </View>
                     )}
                 />

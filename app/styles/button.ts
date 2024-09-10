@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native'
 import colors from './colors'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const buttonStyles: StyleSheet.NamedStyles<any> = {
+export const buttonStyles: StyleSheet.NamedStyles<{button: object, text: object}> = {
     button: {
         paddingVertical: 10,
         paddingHorizontal: 20,
@@ -10,7 +9,7 @@ export const buttonStyles: StyleSheet.NamedStyles<any> = {
         alignItems: 'center',
         marginHorizontal: 10,
         borderRadius: 5,
-        backgroundColor: colors.purple,
+        backgroundColor: colors.accent,
     },
     text: {
         color: colors.white,

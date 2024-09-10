@@ -13,8 +13,8 @@ export function insertRecipes(realm, recipes: {
   userId: string
 }[]) {
     realm.write(() => {
-        return recipes.map(r => {
-            realm.create(Recipe, r)
+        return recipes.map(recipe => {
+            realm.create(Recipe, recipe )
         })
     })
 }
