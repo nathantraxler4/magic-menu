@@ -4,10 +4,11 @@ import { StyleSheet, Text, View, ImageBackground, FlatList, /* ActivityIndicator
 import { useRealm, useQuery } from '@realm/react'
 import Recipe from '../models/Recipe'
 import * as recipeRepo from '../repositories/recipe'
-import PropTypes from 'prop-types'
 import recipesJson from '../assets/json/recipes.json'
+import localImage from '../assets/images/dinnerMenuBright.webp'
 
-const Menu = ({ backgroundImage }) => {
+
+const Menu = () => {
     // const [dinnerMenu, setDinnerMenu] = useState(null)
     // const [loading, setLoading] = useState(true)
     // const [error, setError] = useState(null)
@@ -24,7 +25,6 @@ const Menu = ({ backgroundImage }) => {
         } else {
             recipeRepo.deleteRecipes(realm, recipes)
         }
-        
     }
 
     // const fetchData = async () => {
@@ -51,7 +51,7 @@ const Menu = ({ backgroundImage }) => {
 
     return (
         <ImageBackground
-            source={backgroundImage}
+            source={localImage}
             style={styles.background}
             resizeMode="cover"
         >
@@ -106,9 +106,5 @@ const styles = StyleSheet.create({
         color: 'white',
     },
 })
-
-Menu.propTypes = {
-    backgroundImage: PropTypes.number.isRequired,
-}
 
 export default Menu
