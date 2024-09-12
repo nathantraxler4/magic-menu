@@ -16,6 +16,4 @@ const handleError = (error) => {
     throw error // Rethrow or handle the error as needed
 }
 
-
-
 export default handleError

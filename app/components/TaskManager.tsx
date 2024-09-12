@@ -1,20 +1,20 @@
-import React, {useCallback} from 'react'
-import {View, StyleSheet, Switch, Text} from 'react-native'
+import React, { useCallback } from 'react'
+import { View, StyleSheet, Switch, Text } from 'react-native'
 
-import {Task} from '../models/Task'
-import {IntroText} from './IntroText'
-import {AddTaskForm} from './AddTaskForm'
+import { Task } from '../models/Task'
+import { IntroText } from './IntroText'
+import { AddTaskForm } from './AddTaskForm'
 import TaskList from './TaskList'
 
-import {useRealm} from '@realm/react'
-import {shadows} from '../styles/shadows'
+import { useRealm } from '@realm/react'
+import { shadows } from '../styles/shadows'
 
 export const TaskManager: React.FC<{
-  tasks: Realm.Results<Task & Realm.Object>;
-  userId?: string;
-  setShowDone: (showDone: boolean) => void;
-  showDone: boolean;
-}> = ({tasks, userId, setShowDone, showDone}) => {
+    tasks: Realm.Results<Task & Realm.Object>
+    userId?: string
+    setShowDone: (showDone: boolean) => void
+    showDone: boolean
+}> = ({ tasks, userId, setShowDone, showDone }) => {
     const realm = useRealm()
 
     const handleAddTask = useCallback(
@@ -33,11 +33,11 @@ export const TaskManager: React.FC<{
             realm.write(() => {
                 return realm.create(Task, {
                     description,
-                    userId: userId ?? 'SYNC_DISABLED',
+                    userId: userId ?? 'SYNC_DISABLED'
                 })
             })
         },
-        [realm, userId],
+        [realm, userId]
     )
 
     const handleToggleTaskStatus = useCallback(
@@ -61,7 +61,7 @@ export const TaskManager: React.FC<{
             //   task.isComplete = !task.isComplete;
             // });
         },
-        [realm],
+        [realm]
     )
 
     const handleDeleteTask = useCallback(
@@ -73,7 +73,7 @@ export const TaskManager: React.FC<{
                 // realm?.delete(realm?.objectForPrimaryKey('Task', id));
             })
         },
-        [realm],
+        [realm]
     )
 
     return (
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         paddingTop: 20,
-        paddingHorizontal: 20,
+        paddingHorizontal: 20
     },
     switchPanel: {
         flexDirection: 'row',
@@ -111,11 +111,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginHorizontal: 10,
         marginBottom: 10,
-        ...shadows,
+        ...shadows
     },
     switchPanelText: {
         flex: 1,
         fontSize: 16,
-        padding: 5,
-    },
+        padding: 5
+    }
 })

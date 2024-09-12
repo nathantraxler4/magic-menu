@@ -1,4 +1,4 @@
-import {Platform} from 'react-native'
+import { Platform } from 'react-native'
 import colors from './colors'
 
 export const shadows = Platform.select({
@@ -6,12 +6,12 @@ export const shadows = Platform.select({
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 4
         },
         shadowOpacity: 0.7,
-        shadowRadius: 3,
+        shadowRadius: 3
     },
     android: {
-        elevation: 3,
-    },
+        elevation: 3
+    }
 })

@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
-import {StyleSheet, Switch, Text, View} from 'react-native'
-import {useRealm} from '@realm/react'
+import React, { useState } from 'react'
+import { StyleSheet, Switch, Text, View } from 'react-native'
+import { useRealm } from '@realm/react'
 
+/**
+ *
+ */
 export function OfflineModeButton() {
     const realm = useRealm()
 
@@ -27,16 +30,16 @@ export function OfflineModeButton() {
 }
 
 const styles = StyleSheet.create({
-    icon: {padding: 12},
+    icon: { padding: 12 },
     toggleRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 12,
+        padding: 12
     },
     toggleText: {
         flex: 1,
         fontSize: 16,
         color: '#fff',
-        fontWeight: 'bold',
-    },
+        fontWeight: 'bold'
+    }
 })

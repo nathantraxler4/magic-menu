@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react'
-import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native'
 import colors from '../styles/colors'
-import {shadows} from '../styles/shadows'
-import {buttonStyles} from '../styles/button'
-import {AuthOperationName, useAuth, useEmailPasswordAuth} from '@realm/react'
+import { shadows } from '../styles/shadows'
+import { buttonStyles } from '../styles/button'
+import { AuthOperationName, useAuth, useEmailPasswordAuth } from '@realm/react'
 
 export const LoginScreen = () => {
-    const {result, logInWithEmailPassword} = useAuth()
-    const {register} = useEmailPasswordAuth()
+    const { result, logInWithEmailPassword } = useAuth()
+    const { register } = useEmailPasswordAuth()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     // Automatically log in after registration
     useEffect(() => {
         if (result.success && result.operation === AuthOperationName.Register) {
-            logInWithEmailPassword({email, password})
+            logInWithEmailPassword({ email, password })
         }
     }, [result, logInWithEmailPassword, email, password])
 
@@ -45,33 +45,31 @@ export const LoginScreen = () => {
             </View>
 
             {result?.error?.operation === AuthOperationName.LogInWithEmailPassword && (
-                <Text style={[styles.error]}>
-          There was an error logging in, please try again{' '}
-                </Text>
+                <Text style={[styles.error]}>There was an error logging in, please try again </Text>
             )}
 
             {result?.error?.operation === AuthOperationName.Register && (
-                <Text style={[styles.error]}>
-          There was an error registering, please try again
-                </Text>
+                <Text style={[styles.error]}>There was an error registering, please try again</Text>
             )}
 
             <View style={styles.buttons}>
                 <Pressable
-                    onPress={() => logInWithEmailPassword({email, password})}
+                    onPress={() => logInWithEmailPassword({ email, password })}
                     style={[styles.button, result.pending && styles.buttonDisabled]}
-                    disabled={result.pending}>
+                    disabled={result.pending}
+                >
                     <Text style={buttonStyles.text}>Login</Text>
                 </Pressable>
 
                 <Pressable
-                    onPress={() => register({email, password})}
+                    onPress={() => register({ email, password })}
                     style={[
                         styles.button,
                         result.pending && styles.buttonDisabled,
-                        styles.registerButton,
+                        styles.registerButton
                     ]}
-                    disabled={result.pending}>
+                    disabled={result.pending}
+                >
                     <Text style={buttonStyles.text}>Register</Text>
                 </Pressable>
             </View>
@@ -84,13 +82,13 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.darkBlue,
+        backgroundColor: colors.darkBlue
     },
 
     inputContainer: {
         padding: 10,
         alignSelf: 'stretch',
-        marginHorizontal: 10,
+        marginHorizontal: 10
     },
 
     error: {
@@ -98,7 +96,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         fontSize: 14,
-        color: colors.white,
+        color: colors.white
     },
 
     input: {
@@ -109,24 +107,24 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         backgroundColor: colors.white,
         borderRadius: 5,
-        ...shadows,
+        ...shadows
     },
 
     buttons: {
         marginTop: 16,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
 
     button: {
         ...buttonStyles.button,
-        ...shadows,
+        ...shadows
     },
 
     buttonDisabled: {
-        opacity: 0.5,
+        opacity: 0.5
     },
 
     registerButton: {
-        backgroundColor: colors.purpleDark,
-    },
+        backgroundColor: colors.purpleDark
+    }
 })

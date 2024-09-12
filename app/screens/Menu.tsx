@@ -1,25 +1,32 @@
-import React, { /* useEffect, useState */ } from 'react'
-import { StyleSheet, Text, View, ImageBackground, FlatList, /* ActivityIndicator,*/ Button } from 'react-native'
-// import fetchDinnerMenu from '../services'
+import React /* useEffect, useState */ from 'react'
+import {
+    StyleSheet,
+    Text,
+    View,
+    ImageBackground,
+    FlatList,
+    /* ActivityIndicator,*/ Button
+} from 'react-native'
 import { useRealm, useQuery } from '@realm/react'
 import Recipe from '../models/Recipe'
+import MenuModel from '../models/Menu'
 import * as recipeRepo from '../repositories/recipe'
 import recipesJson from '../assets/json/recipes.json'
 import localImage from '../assets/images/dinnerMenuBright.webp'
-
 
 const Menu = () => {
     // const [dinnerMenu, setDinnerMenu] = useState(null)
     // const [loading, setLoading] = useState(true)
     // const [error, setError] = useState(null)
     const realm = useRealm()
-
     const recipes = useQuery(Recipe)
-    console.log(recipes)
+    const menus = useQuery(MenuModel)
+    console.log(menus)
+    const menu = menus[0]
 
     const handleAddRecipe = () => {
         if (recipes.length < 3) {
-            const record = { userId: 'Nathan', ...recipesJson[recipes.length]}
+            const record = { userId: 'Nathan', ...recipesJson[recipes.length] }
             console.log(record)
             recipeRepo.insertRecipes(realm, [record])
         } else {
@@ -39,7 +46,6 @@ const Menu = () => {
     //   }
     // }
 
-
     // useEffect(() => {
     //   fetchData()
     // }, [])
@@ -50,28 +56,20 @@ const Menu = () => {
     // }
 
     return (
-        <ImageBackground
-            source={localImage}
-            style={styles.background}
-            resizeMode="cover"
-        >
-            <Button
-                onPress={() => handleAddRecipe()}
-                title='Add Recipe'	      
-            />
+        <ImageBackground source={menu.backgroundImage} style={styles.background} resizeMode="cover">
             <View style={styles.container}>
                 <FlatList
-                    data={recipes}
-                    keyExtractor={item => item.name}
+                    data={menu.courses}
+                    keyExtractor={(item) => item.dishName}
                     renderItem={({ item }) => (
                         <View style={styles.menuItem}>
-                            <Text style={styles.title}>{item.name}</Text>
-                            <Text style={styles.dish}>{item.ingredients[0]}</Text>
-                            <Text style={styles.description}>{item.directions[0]}</Text>
+                            <Text style={styles.title}>{item.dishName}</Text>
+                            <Text style={styles.description}>{item.description}</Text>
                         </View>
                     )}
                 />
             </View>
+            <Button onPress={() => handleAddRecipe()} title="Add / Clear Recipes" />
         </ImageBackground>
     )
 }
@@ -79,32 +77,32 @@ const Menu = () => {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     container: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: 20,
-        borderRadius: 10,
+        borderRadius: 10
     },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 20
     },
     menuItem: {
-        marginBottom: 15,
+        marginBottom: 15
     },
     dish: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'white'
     },
     description: {
         fontSize: 16,
-        color: 'white',
-    },
+        color: 'white'
+    }
 })
 
 export default Menu

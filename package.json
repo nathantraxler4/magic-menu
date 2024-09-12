@@ -5,7 +5,13 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "clean": "npx eslint --fix"
+    "clean": "npx eslint --fix && npx prettier . --write",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@react-native-community/eslint-config": "^3.2.0",
@@ -36,9 +42,12 @@
     "@typescript-eslint/parser": "^8.4.0",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-jsdoc": "^50.2.2",
     "eslint-plugin-react": "^7.35.2",
     "globals": "^15.9.0",
-    "prettier": "3.3.3",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
     "typescript": "^5.1.3",
     "typescript-eslint": "^8.4.0"
   },

@@ -5,8 +5,8 @@ const fetchDinnerMenu = async () => {
     try {
         const response = await axios.get('http://127.0.0.1:5000/api/data', {
             headers: {
-                'Content-Type': 'application/json',
-            },
+                'Content-Type': 'application/json'
+            }
         })
 
         console.log(response.data) // Log or use the data as needed
@@ -15,7 +15,5 @@ const fetchDinnerMenu = async () => {
         handleError(error)
     }
 }
-
-
 
 export default fetchDinnerMenu

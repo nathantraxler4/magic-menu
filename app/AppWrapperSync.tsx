@@ -1,18 +1,18 @@
 import React from 'react'
-import {AppProvider, UserProvider} from '@realm/react'
-import {SafeAreaView, StyleSheet} from 'react-native'
+import { AppProvider, UserProvider } from '@realm/react'
+import { SafeAreaView, StyleSheet } from 'react-native'
 
-import {schemas} from './models'
-import {LoginScreen} from './components/LoginScreen'
+import { schemas } from './models'
+import { LoginScreen } from './components/LoginScreen'
 import colors from './styles/colors'
-import {AppSync} from './AppSync'
+import { AppSync } from './AppSync'
 
-import {RealmProvider} from '@realm/react'
-import {OpenRealmBehaviorType, OpenRealmTimeOutBehavior} from 'realm'
+import { RealmProvider } from '@realm/react'
+import { OpenRealmBehaviorType, OpenRealmTimeOutBehavior } from 'realm'
 
 export const AppWrapperSync: React.FC<{
-  appId: string;
-}> = ({appId}) => {
+    appId: string
+}> = ({ appId }) => {
     // If we are logged in, add the sync configuration the the RealmProvider and render the app
     return (
         <SafeAreaView style={styles.screen}>
@@ -26,10 +26,11 @@ export const AppWrapperSync: React.FC<{
                                 type: OpenRealmBehaviorType.DownloadBeforeOpen,
                                 timeOut: 1000,
                                 timeOutBehavior:
-                  // In v11 the enums are not set up correctly, so we need to use the string values
-                  OpenRealmTimeOutBehavior?.OpenLocalRealm ?? 'openLocalRealm',
-                            },
-                        }}>
+                                    // In v11 the enums are not set up correctly, so we need to use the string values
+                                    OpenRealmTimeOutBehavior?.OpenLocalRealm ?? 'openLocalRealm'
+                            }
+                        }}
+                    >
                         <AppSync />
                     </RealmProvider>
                 </UserProvider>
@@ -41,8 +42,8 @@ export const AppWrapperSync: React.FC<{
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: colors.darkBlue,
-    },
+        backgroundColor: colors.darkBlue
+    }
 })
 
 export default AppWrapperSync

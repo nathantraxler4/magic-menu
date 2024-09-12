@@ -1,7 +1,7 @@
-import {StyleSheet, Platform} from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import colors from './colors'
 
-export const textInputStyles: StyleSheet.NamedStyles<{textInput: object}> = {
+export const textInputStyles: StyleSheet.NamedStyles<{ textInput: object }> = {
     textInput: {
         color: colors.white,
         borderRadius: 20,

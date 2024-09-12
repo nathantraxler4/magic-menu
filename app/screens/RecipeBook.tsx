@@ -1,17 +1,19 @@
-import React, {useCallback} from 'react'
-import {View, StyleSheet} from 'react-native'
+import React, { useCallback } from 'react'
+import { View, StyleSheet } from 'react-native'
 
 import { AddRecipeForm } from '../components/AddRecipeForm'
 
-import {useRealm} from '@realm/react'
+import { useRealm } from '@realm/react'
 import * as recipeRepo from '../repositories/recipe'
+import * as menuRepo from '../repositories/menu'
+import localImage from '../assets/images/dinnerMenuBright.webp'
 
 export const RecipeBook = () => {
     const realm = useRealm()
 
     const handleAddRecipe = useCallback(
         (name: string, ingredients: string, directions: string): void => {
-            if (!ingredients || !name || ! directions) {
+            if (!ingredients || !name || !directions) {
                 return
             }
             const ingedientsArray = ingredients.split('\n')
@@ -24,9 +26,28 @@ export const RecipeBook = () => {
             // may occasionally be online during short time spans we want to increase the probability
             // of sync participants to successfully sync everything in the transaction, otherwise
             // no changes propagate and the transaction needs to start over when connectivity allows.
-            recipeRepo.insertRecipes(realm, [{ name, ingredients: ingedientsArray, directions: directionsArray, userId: 'Nathan'}])
+            recipeRepo.insertRecipes(realm, [
+                {
+                    name,
+                    ingredients: ingedientsArray,
+                    directions: directionsArray,
+                    userId: 'Nathan'
+                }
+            ])
+            const menu = {
+                backgroundImage: localImage,
+                courses: [
+                    {
+                        dishName: 'Yogurt Chicken',
+                        description: 'Greek yogurt, chicken thigh, garlic, onion, mexican spices',
+                        userId: 'Nathan'
+                    }
+                ],
+                userId: 'Nathan'
+            }
+            menuRepo.insertMenu(realm, menu)
         },
-        [realm],
+        [realm]
     )
 
     // const handleToggleTaskStatus = useCallback(
@@ -74,8 +95,8 @@ export const RecipeBook = () => {
 
 const styles = StyleSheet.create({
     content: {
-        flex: 1,
-    },
+        flex: 1
+    }
     // switchPanel: {
     //     flexDirection: 'row',
     //     backgroundColor: '#fff',

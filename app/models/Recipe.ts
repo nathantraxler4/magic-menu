@@ -1,4 +1,4 @@
-import Realm, {BSON} from 'realm'
+import Realm, { BSON } from 'realm'
 
 // To use a class as a Realm object type in Typescript with the `@realm/babel-plugin` plugin,
 // simply define the properties on the class with the correct type and the plugin will convert
