@@ -15,9 +15,6 @@ import recipesJson from '../assets/json/recipes.json'
 import localImage from '../assets/images/dinnerMenuBright.webp'
 
 const Menu = () => {
-    // const [dinnerMenu, setDinnerMenu] = useState(null)
-    // const [loading, setLoading] = useState(true)
-    // const [error, setError] = useState(null)
     const realm = useRealm()
     const recipes = useQuery(Recipe)
     const menus = useQuery(MenuModel)
@@ -33,27 +30,6 @@ const Menu = () => {
             recipeRepo.deleteRecipes(realm, recipes)
         }
     }
-
-    // const fetchData = async () => {
-    //   try {
-    //     const data = await fetchDinnerMenu()
-    //     setDinnerMenu(data)
-    //     setLoading(false);
-    //   } catch (error) {
-    //     console.log(error)
-    //     setError(error.message);
-    //     setLoading(false);
-    //   }
-    // }
-
-    // useEffect(() => {
-    //   fetchData()
-    // }, [])
-
-    // if (loading) {
-    //   console.log("LOADING...")
-    //   return <ActivityIndicator size="large" />;
-    // }
 
     return (
         <ImageBackground source={menu.backgroundImage} style={styles.background} resizeMode="cover">
