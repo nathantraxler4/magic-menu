@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, Pressable, Platform, StyleSheet } from 'react-native'
 
-import { buttonStyles } from '../styles/button'
-import colors from '../styles/colors'
-import { shadows } from '../styles/shadows'
+import { buttonStyles } from '@app/styles/button'
+import colors from '@app/styles/colors'
+import { shadows } from '@app/styles/shadows'
 
 type AddTaskFormProps = {
     onSubmit: (description: string) => void

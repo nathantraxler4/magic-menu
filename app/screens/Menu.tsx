@@ -11,8 +11,8 @@ import {
 // import MenuModel from '../models/Menu'
 // import * as recipeRepo from '../repositories/recipe'
 // import recipesJson from '../assets/json/recipes.json'
-import localImage from '../assets/images/dinnerMenuBright.webp'
-import { MenuProps } from '../types/props'
+import localImage from '@app/assets/images/dinnerMenuBright.webp'
+import { MenuProps } from '@app/types/props'
 
 const Menu = ({ route /*, navigation*/ }: MenuProps) => {
     console.log(route.params.courses)

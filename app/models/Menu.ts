@@ -1,5 +1,5 @@
 import Realm, { BSON } from 'realm'
-import Course from './Course'
+import Course from '@app/models/Course'
 
 export default class Menu extends Realm.Object {
     _id: BSON.ObjectId = new BSON.ObjectId()
