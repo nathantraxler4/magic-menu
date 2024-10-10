@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from 'react'
 import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native'
 
-import Recipe from '@/app/models/Recipe'
+import Recipe from '../models/Recipe'
 import { useQuery } from '@realm/react'
-import { buttonStyles } from '@/app/styles/button'
-import { RecipeSelectBox } from '@/app/components/RecipeSelectBox'
-import colors from '@/app/styles/colors'
-import { generateCompletion } from '@/app/services/index'
+import { buttonStyles } from '../styles/button'
+import { RecipeSelectBox } from '../components/RecipeSelectBox'
+import colors from '../styles/colors'
+import { generateCompletion } from '../services/index'
 import { groupBy } from 'lodash'
-import { RecipeBookProps } from '@/app/types/props'
+import { RecipeBookProps } from '../types/props'
 
 export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     const recipes: Realm.Results<Recipe> = useQuery(Recipe)
@@ -28,7 +28,6 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     )
 
     const generateMenu = useCallback(async () => {
-        console.log(recipes)
         const recipeNamesToRecords = groupBy(recipes, (recipe) => recipe.name)
         const selectedRecipes = [...selected].map((name) => {
             return recipeNamesToRecords[name][0]

@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-import colors from '@/app/styles/colors'
+import colors from './colors'
 
 export const textInputStyles: StyleSheet.NamedStyles<{ textInput: object }> = {
     textInput: {
