@@ -1,4 +1,4 @@
-import Menu from '../models/Menu'
+import Menu from '@/app/models/Menu'
 
 /**
  * @param {Realm} realm realm instance
@@ -17,7 +17,7 @@ export function insertMenu(
     realm,
     menu: {
         backgroundImage: number
-        courses: Array<{ dishName: string; description: string; userId: string }>
+        courses: Array<{ name: string; description: string }>
         userId: string
     }
 ) {

@@ -1,12 +1,12 @@
 import React from 'react'
 import Menu from './screens/Menu'
 
-import { AddRecipe } from './screens/AddRecipe'
-import { RecipeBook } from './screens/RecipeBook'
+import { AddRecipe } from '@/app/screens/AddRecipe'
+import { RecipeBook } from '@/app/screens/RecipeBook'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { BottomTabParamList } from './types/props'
-import courses from './assets/json/courses'
+import { BottomTabParamList } from '@/app/types/props'
+import courses from '@/app/assets/json/courses'
 
 const Tab = createBottomTabNavigator<BottomTabParamList>()
 

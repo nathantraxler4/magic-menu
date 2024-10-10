@@ -1,20 +1,16 @@
 import React, { useState, useCallback } from 'react'
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native'
 
-import { buttonStyles } from '../styles/button'
+import { buttonStyles } from '@/app/styles/button'
 import { useRealm } from '@realm/react'
-import * as recipeRepo from '../repositories/recipe'
-import * as menuRepo from '../repositories/menu'
-import { textInputStyles } from '../styles/textInput'
-import colors from '../styles/colors'
-import localImage from '../assets/images/dinnerMenuBright.webp'
-import courses from '../assets/json/courses'
+import * as recipeRepo from '@/app/repositories/recipe'
+import * as menuRepo from '@/app/repositories/menu'
+import { textInputStyles } from '@/app/styles/textInput'
+import colors from '@/app/styles/colors'
+import localImage from '@/app/assets/images/dinnerMenuBright.webp'
+import courses from '@/app/assets/json/courses'
 
-type AddRecipeFormProps = {
-    onSubmit: (name: string, ingredients: string, directions: string) => void
-}
-
-export const AddRecipe: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
+export const AddRecipe = () => {
     const [name, setName] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [directions, setDirections] = useState('')
