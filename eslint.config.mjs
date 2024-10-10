@@ -5,6 +5,13 @@ import pluginReact from 'eslint-plugin-react'
 import jsdoc from 'eslint-plugin-jsdoc'
 
 export default [
+    {
+        settings: {
+            react: {
+                version: "detect"
+            }
+        }
+    },
     { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
     { languageOptions: { globals: globals.browser } },
     {
