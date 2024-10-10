@@ -4,7 +4,7 @@ import colors from './colors'
 export const textInputStyles: StyleSheet.NamedStyles<{ textInput: object }> = {
     textInput: {
         color: colors.white,
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: colors.textBackground,
         fontSize: 20,
         borderWidth: 5,

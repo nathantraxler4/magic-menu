@@ -16,7 +16,8 @@ export const RecipeSelectBox = (props: {
             borderColor: isThisSelected ? colors.accent : colors.lighterAccent
         },
         selectableText: {
-            ...selectableStyles.textCenter
+            ...selectableStyles.textCenter,
+            backgroundColor: isThisSelected ? colors.accent : colors.background
         }
     })
 

@@ -4,48 +4,38 @@ import {
     Text,
     View,
     ImageBackground,
-    FlatList,
-    /* ActivityIndicator,*/ Button
-} from 'react-native'
-import { useRealm, useQuery } from '@realm/react'
-import Recipe from '../models/Recipe'
-import MenuModel from '../models/Menu'
-import * as recipeRepo from '../repositories/recipe'
-import recipesJson from '../assets/json/recipes.json'
+    FlatList //Button
+} from /* ActivityIndicator,*/ 'react-native'
+// import { useRealm, useQuery } from '@realm/react'
+// import Recipe from '../models/Recipe'
+// import MenuModel from '../models/Menu'
+// import * as recipeRepo from '../repositories/recipe'
+// import recipesJson from '../assets/json/recipes.json'
 import localImage from '../assets/images/dinnerMenuBright.webp'
+import { MenuProps } from '../types/props'
 
-const Menu = () => {
-    const realm = useRealm()
-    const recipes = useQuery(Recipe)
-    const menus = useQuery(MenuModel)
-    console.log(menus)
-    const menu = menus[0]
-
-    const handleAddRecipe = () => {
-        if (recipes.length < 3) {
-            const record = { userId: 'Nathan', ...recipesJson[recipes.length] }
-            console.log(record)
-            recipeRepo.insertRecipes(realm, [record])
-        } else {
-            recipeRepo.deleteRecipes(realm, recipes)
-        }
-    }
+const Menu = ({ route /*, navigation*/ }: MenuProps) => {
+    console.log(route.params.courses)
 
     return (
-        <ImageBackground source={menu.backgroundImage} style={styles.background} resizeMode="cover">
+        <ImageBackground
+            source={route.params.backgroundImage}
+            style={styles.background}
+            resizeMode="cover"
+        >
             <View style={styles.container}>
                 <FlatList
-                    data={menu.courses}
-                    keyExtractor={(item) => item.dishName}
+                    data={route.params.courses}
+                    keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (
                         <View style={styles.menuItem}>
-                            <Text style={styles.title}>{item.dishName}</Text>
+                            <Text style={styles.title}>{item.name}</Text>
                             <Text style={styles.description}>{item.description}</Text>
                         </View>
                     )}
                 />
             </View>
-            <Button onPress={() => handleAddRecipe()} title="Add / Clear Recipes" />
+            {/* <Button onPress={() => handleAddRecipe()} title="Add / Clear Recipes" /> */}
         </ImageBackground>
     )
 }

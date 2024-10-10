@@ -8,6 +8,7 @@ import * as menuRepo from '../repositories/menu'
 import { textInputStyles } from '../styles/textInput'
 import colors from '../styles/colors'
 import localImage from '../assets/images/dinnerMenuBright.webp'
+import courses from '../assets/json/courses'
 
 type AddRecipeFormProps = {
     onSubmit: (name: string, ingredients: string, directions: string) => void
@@ -24,8 +25,6 @@ export const AddRecipe: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
             if (!ingredients || !name || !directions) {
                 return
             }
-            const ingedientsArray = ingredients.split('\n')
-            const directionsArray = directions.split('\n')
 
             // Everything in the function passed to "realm.write" is a transaction and will
             // hence succeed or fail together. A transcation is the smallest unit of transfer
@@ -37,20 +36,14 @@ export const AddRecipe: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
             recipeRepo.insertRecipes(realm, [
                 {
                     name,
-                    ingredients: ingedientsArray,
-                    directions: directionsArray,
+                    ingredients: ingredients,
+                    directions: directions,
                     userId: 'Nathan'
                 }
             ])
             const menu = {
                 backgroundImage: localImage,
-                courses: [
-                    {
-                        dishName: 'Yogurt Chicken',
-                        description: 'Greek yogurt, chicken thigh, garlic, onion, mexican spices',
-                        userId: 'Nathan'
-                    }
-                ],
+                courses: courses,
                 userId: 'Nathan'
             }
             menuRepo.insertMenu(realm, menu)
@@ -116,7 +109,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: colors.background
-        // ...shadows,
     },
     textInput: {
         ...textInputStyles.textInput,
@@ -129,7 +121,7 @@ const styles = StyleSheet.create({
     },
     submit: {
         ...buttonStyles.button,
-        width: '40%',
+        width: '80%',
         flex: 1,
         flexGrow: 1,
         margin: '1%'

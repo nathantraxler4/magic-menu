@@ -16,8 +16,8 @@ export function insertRecipes(
     realm,
     recipes: {
         name: string
-        directions: string[]
-        ingredients: string[]
+        directions: string
+        ingredients: string
         userId: string
     }[]
 ) {

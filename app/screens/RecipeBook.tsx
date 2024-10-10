@@ -6,8 +6,11 @@ import { useQuery } from '@realm/react'
 import { buttonStyles } from '../styles/button'
 import { RecipeSelectBox } from '../components/RecipeSelectBox'
 import colors from '../styles/colors'
+import { generateCompletion } from '../services/index'
+import { groupBy } from 'lodash'
+import { RecipeBookProps } from '../types/props'
 
-export const RecipeBook = () => {
+export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     const recipes: Realm.Results<Recipe> = useQuery(Recipe)
     const [selected, setSelected] = useState(new Set<string>())
 
@@ -24,8 +27,22 @@ export const RecipeBook = () => {
         [selected]
     )
 
-    const generateMenu = useCallback(() => {
-        console.log(selected)
+    const generateMenu = useCallback(async () => {
+        const recipeNamesToRecords = groupBy(recipes, (recipe) => recipe.name)
+        const selectedRecipes = [...selected].map((name) => {
+            return recipeNamesToRecords[name][0]
+        })
+
+        const result = await generateCompletion(selectedRecipes)
+        console.log(`
+========Result of Generating Menu======
+${result}
+=======================================
+`)
+        navigation.navigate('Menu', {
+            courses: [{ name: 'Course 1', description: 'This is course 1.' }],
+            backgroundImage: 1
+        })
     }, [selected])
 
     return (

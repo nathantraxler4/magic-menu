@@ -6,9 +6,8 @@ import Realm, { BSON } from 'realm'
 export default class Recipe extends Realm.Object {
     _id: BSON.ObjectId = new BSON.ObjectId()
     name!: string
-    // Trouble storing as string[]
-    ingredients!: Realm.List<string>
-    directions!: Realm.List<string>
+    ingredients!: string
+    directions!: string
     createdAt: Date = new Date()
     userId: string
 

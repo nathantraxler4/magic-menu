@@ -1,27 +1,26 @@
 import axios from 'axios'
 import handleError from '../utils/error'
 
-const fetchDinnerMenu = async () => {
-    try {
-        const response = await axios.get('http://127.0.0.1:5000/api/data', {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+const axios_instance = axios.create({
+    baseURL: 'http://127.0.0.1:5000/api',
+    timeout: 1000,
+    headers: { 'Content-Type': 'application/json' }
+})
 
-        console.log(response.data) // Log or use the data as needed
-        return response.data // Return the data for further processing
-    } catch (error) {
-        handleError(error)
-    }
-}
+// export const fetchDinnerMenu = async () => {
+//     try {
+//         const response = await axios_instance.get('/data')
+//         console.log(response.data) // Log or use the data as needed
+//         return response.data // Return the data for further processing
+//     } catch (error) {
+//         handleError(error)
+//     }
+// }
 
-const generateMenu = async () => {
+export const generateCompletion = async (selectedRecipes) => {
     try {
-        const response = await axios.get('http://127.0.0.1:5000/api/data', {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const response = await axios_instance.post('/menu/generate', {
+            recipes: selectedRecipes
         })
 
         return response.data
@@ -29,5 +28,3 @@ const generateMenu = async () => {
         handleError(error)
     }
 }
-
-export default { fetchDinnerMenu, generateMenu }
