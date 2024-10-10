@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabParamList } from '@app/types/props'
 import courses from '@app/assets/json/courses'
+import localImage from '@app/assets/images/dinnerMenuBright.webp'
 
 const Tab = createBottomTabNavigator<BottomTabParamList>()
 
@@ -30,7 +31,7 @@ export const AppNonSync = () => {
                     options={{ headerShown: false }}
                     initialParams={{
                         courses: courses,
-                        backgroundImage: 1
+                        backgroundImage: localImage
                     }}
                 />
             </Tab.Navigator>

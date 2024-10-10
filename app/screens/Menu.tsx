@@ -1,17 +1,5 @@
 import React /* useEffect, useState */ from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    ImageBackground,
-    FlatList //Button
-} from /* ActivityIndicator,*/ 'react-native'
-// import { useRealm, useQuery } from '@realm/react'
-// import Recipe from '../models/Recipe'
-// import MenuModel from '../models/Menu'
-// import * as recipeRepo from '../repositories/recipe'
-// import recipesJson from '../assets/json/recipes.json'
-import localImage from '@app/assets/images/dinnerMenuBright.webp'
+import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
 import { MenuProps } from '@app/types/props'
 
 const Menu = ({ route /*, navigation*/ }: MenuProps) => {
