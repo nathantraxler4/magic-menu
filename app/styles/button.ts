@@ -9,9 +9,9 @@ export const buttonStyles: StyleSheet.NamedStyles<{ button: object; text: object
         backgroundColor: colors.accent
     },
     text: {
-        color: colors.white,
+        fontSize: 20,
+        fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 17,
-        fontWeight: 'bold'
+        color: colors.white
     }
 }

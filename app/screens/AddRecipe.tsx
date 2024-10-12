@@ -16,6 +16,7 @@ export const AddRecipe = () => {
     const handleAddRecipe = useCallback(
         (name: string, ingredients: string, directions: string): void => {
             if (!ingredients || !name || !directions) {
+                console.log('[handleAddRecipe] Must provide name, ingredients, and directions.')
                 return
             }
 
@@ -84,17 +85,12 @@ export const AddRecipe = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexGrow: 1,
-        flexDirection: 'row',
-        backgroundColor: colors.background
-    },
     form: {
-        flex: 5,
-        flexGrow: 5,
         flexDirection: 'column',
         alignItems: 'center',
+        flex: 5,
+        flexGrow: 5,
+        gap: 10,
         backgroundColor: colors.background
     },
     textInput: {
@@ -102,16 +98,14 @@ const styles = StyleSheet.create({
         flex: 1
     },
     textArea: {
-        ...textInputStyles.textInput,
-        flex: 5, // Makes the directions input larger
-        textAlignVertical: 'top' // Aligns text at the top in multiline input
+        ...textInputStyles.textArea,
+        flex: 10 // Makes the directions input larger
     },
     submit: {
         ...buttonStyles.button,
-        width: '80%',
         flex: 1,
         flexGrow: 1,
-        margin: '1%'
+        width: '80%'
     },
     icon: {
         ...buttonStyles.text

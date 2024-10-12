@@ -10,7 +10,8 @@ const colors = {
     background: '#222222',
     textBackground: '#292929',
     accent: '#CC5599',
-    lighterAccent: '#EEC6DD'
+    lighterAccent: '#EEC6DD',
+    textBackdrop: '#00000077'
 }
 
 export default colors

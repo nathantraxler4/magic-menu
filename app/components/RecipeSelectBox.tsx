@@ -4,11 +4,11 @@ import colors from '@app/styles/colors'
 import { selectableStyles } from '@app/styles/selectable'
 
 export const RecipeSelectBox = (props: {
-    dishName: string
+    name: string
     selected: Set<string>
-    toggleSelected: (dishName: string) => void
+    toggleSelected: (name: string) => void
 }) => {
-    const isThisSelected = props.selected.has(props.dishName)
+    const isThisSelected = props.selected.has(props.name)
 
     const styles = StyleSheet.create({
         selectable: {
@@ -22,12 +22,12 @@ export const RecipeSelectBox = (props: {
     })
 
     const onPressHandler = () => {
-        props.toggleSelected(props.dishName)
+        props.toggleSelected(props.name)
     }
 
     return (
         <TouchableHighlight onPress={onPressHandler} style={styles.selectable}>
-            <Text style={styles.selectableText}>{props.dishName}</Text>
+            <Text style={styles.selectableText}>{props.name}</Text>
         </TouchableHighlight>
     )
 }

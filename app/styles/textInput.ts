@@ -1,17 +1,25 @@
-import { StyleSheet, Platform } from 'react-native'
+import { StyleSheet } from 'react-native'
 import colors from '@app/styles/colors'
 
-export const textInputStyles: StyleSheet.NamedStyles<{ textInput: object }> = {
-    textInput: {
-        color: colors.white,
-        borderRadius: 10,
-        backgroundColor: colors.textBackground,
+const sharedStyles: StyleSheet.NamedStyles<{ textStyles: object }> = {
+    textStyles: {
         fontSize: 20,
+        color: colors.white,
+        backgroundColor: colors.textBackground,
+        borderRadius: 10,
         borderWidth: 5,
-        borderColor: colors.lighterAccent, // Optional, gives the input fields a border
+        borderColor: colors.lighterAccent,
         width: '80%',
-        paddingHorizontal: 15,
-        paddingVertical: Platform.OS === 'ios' ? 15 : 0,
-        margin: 5
+        padding: 15
+    }
+}
+
+export const textInputStyles: StyleSheet.NamedStyles<{ textInput: object; textArea: object }> = {
+    textInput: {
+        ...sharedStyles.textStyles
+    },
+    textArea: {
+        ...sharedStyles.textStyles,
+        textAlignVertical: 'top' // Aligns text at the top in multiline input
     }
 }

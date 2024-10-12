@@ -15,13 +15,13 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     const [selected, setSelected] = useState(new Set<string>())
 
     const toggleSelected = useCallback(
-        (dishName: string) => {
-            if (selected.has(dishName)) {
+        (name: string) => {
+            if (selected.has(name)) {
                 const selectedCopy = new Set<string>(selected)
-                selectedCopy.delete(dishName)
+                selectedCopy.delete(name)
                 setSelected(selectedCopy)
             } else {
-                setSelected(new Set([...selected, dishName]))
+                setSelected(new Set([...selected, name]))
             }
         },
         [selected]
@@ -53,7 +53,7 @@ ${result}
                 keyExtractor={(recipe) => recipe.name}
                 renderItem={({ item }) => (
                     <RecipeSelectBox
-                        dishName={item.name}
+                        name={item.name}
                         selected={selected}
                         toggleSelected={toggleSelected}
                     />
@@ -68,20 +68,19 @@ ${result}
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         flexGrow: 1,
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: colors.background
     },
     recipesContainer: {
-        width: '100%'
+        flexGrow: 20,
+        width: '80%'
     },
     submit: {
         ...buttonStyles.button,
-        width: '40%',
-        height: '10%',
-        margin: '1%'
+        flexGrow: 1,
+        width: '80%'
     },
     icon: {
         ...buttonStyles.text

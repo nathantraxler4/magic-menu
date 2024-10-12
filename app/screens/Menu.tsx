@@ -1,6 +1,7 @@
 import React /* useEffect, useState */ from 'react'
 import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
 import { MenuProps } from '@app/types/props'
+import colors from '@app/styles/colors'
 
 const Menu = ({ route /*, navigation*/ }: MenuProps) => {
     console.log(route.params.courses)
@@ -11,13 +12,14 @@ const Menu = ({ route /*, navigation*/ }: MenuProps) => {
             style={styles.background}
             resizeMode="cover"
         >
-            <View style={styles.container}>
+            <View style={styles.listContainer}>
                 <FlatList
                     data={route.params.courses}
+                    contentContainerStyle={styles.container}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (
                         <View style={styles.menuItem}>
-                            <Text style={styles.title}>{item.name}</Text>
+                            <Text style={styles.courseName}>{item.name}</Text>
                             <Text style={styles.description}>{item.description}</Text>
                         </View>
                     )}
@@ -33,29 +35,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    container: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        padding: 20,
-        borderRadius: 10
+    listContainer: {
+        flex: 0.5
     },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: 'white',
-        textAlign: 'center',
-        marginBottom: 20
+    container: {
+        flex: 1,
+        justifyContent: 'space-around'
     },
     menuItem: {
-        marginBottom: 15
+        backgroundColor: colors.textBackdrop,
+        padding: 15
     },
-    dish: {
-        fontSize: 20,
+    courseName: {
+        fontSize: 28,
         fontWeight: 'bold',
-        color: 'white'
+        textAlign: 'center',
+        color: colors.white
     },
     description: {
         fontSize: 16,
-        color: 'white'
+        color: colors.white
     }
 })
 
