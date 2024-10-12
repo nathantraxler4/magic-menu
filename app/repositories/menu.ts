@@ -1,4 +1,4 @@
-import Menu from '@app/models/Menu'
+import Menu from '@/app/models/Menu'
 
 /**
  * @param {Realm} realm realm instance

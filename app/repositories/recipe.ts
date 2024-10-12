@@ -1,4 +1,4 @@
-import Recipe from '@app/models/Recipe'
+import Recipe from '@/app/models/Recipe'
 
 /**
  *

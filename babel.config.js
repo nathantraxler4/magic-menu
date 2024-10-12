@@ -40,7 +40,7 @@ module.exports = function (api) {
                     ],
                     root: ['.'],
                     alias: {
-                        '@app': './app'
+                        '@/app': './app'
                     }
                 }
             ]

@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react'
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native'
 
-import { buttonStyles } from '@app/styles/button'
+import { buttonStyles } from '@/app/styles/button'
 import { useRealm } from '@realm/react'
-import * as recipeRepo from '@app/repositories/recipe'
+import * as recipeRepo from '@/app/repositories/recipe'
 import { textInputStyles } from '../styles/textInput'
-import colors from '@app/styles/colors'
+import colors from '@/app/styles/colors'
 
 export const AddRecipe = () => {
     const [name, setName] = useState('')

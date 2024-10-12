@@ -1,7 +1,7 @@
 import React /* useEffect, useState */ from 'react'
 import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
-import { MenuProps } from '@app/types/props'
-import colors from '@app/styles/colors'
+import { MenuProps } from '@/app/types/props'
+import colors from '@/app/styles/colors'
 
 const Menu = ({ route /*, navigation*/ }: MenuProps) => {
     console.log(route.params.courses)

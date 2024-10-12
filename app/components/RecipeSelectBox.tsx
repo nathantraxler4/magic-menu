@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, TouchableHighlight } from 'react-native'
-import colors from '@app/styles/colors'
-import { selectableStyles } from '@app/styles/selectable'
+import colors from '@/app/styles/colors'
+import { selectableStyles } from '@/app/styles/selectable'
 
 export const RecipeSelectBox = (props: {
     name: string

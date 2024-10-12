@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import colors from '@app/styles/colors'
+import colors from '@/app/styles/colors'
 
 const sharedStyles: StyleSheet.NamedStyles<{ textStyles: object }> = {
     textStyles: {
