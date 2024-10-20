@@ -7,7 +7,6 @@ export const selectableStyles: StyleSheet.NamedStyles<{
 }> = {
     selectableContainer: {
         flex: 1,
-        marginVertical: 5,
         borderRadius: 10,
         borderWidth: 5
     },

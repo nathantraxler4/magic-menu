@@ -49,7 +49,8 @@ ${result}
         <View style={styles.container}>
             <FlatList
                 data={recipes}
-                style={styles.recipesContainer}
+                style={styles.flatlist}
+                contentContainerStyle={styles.recipesContainer}
                 keyExtractor={(recipe) => recipe.name}
                 renderItem={({ item }) => (
                     <RecipeSelectBox
@@ -69,13 +70,17 @@ ${result}
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
-        flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        paddingVertical: 15
     },
-    recipesContainer: {
+    flatlist: {
         flexGrow: 20,
         width: '80%'
+    },
+    recipesContainer: {
+        flexGrow: 1,
+        gap: 15
     },
     submit: {
         ...buttonStyles.button,
