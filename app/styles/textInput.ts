@@ -9,7 +9,7 @@ const sharedStyles: StyleSheet.NamedStyles<{ textStyles: object }> = {
         borderRadius: 10,
         borderWidth: 5,
         borderColor: colors.lighterAccent,
-        width: '80%',
+        width: '100%',
         padding: 15
     }
 }

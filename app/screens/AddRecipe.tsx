@@ -4,7 +4,8 @@ import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native'
 import { buttonStyles } from '@/app/styles/button'
 import { useRealm } from '@realm/react'
 import * as recipeRepo from '@/app/repositories/recipe'
-import { textInputStyles } from '../styles/textInput'
+import { textInputStyles } from '@/app/styles/textInput'
+import { commonStyles } from '@/app/styles/common'
 import colors from '@/app/styles/colors'
 
 export const AddRecipe = () => {
@@ -86,11 +87,12 @@ export const AddRecipe = () => {
 
 const styles = StyleSheet.create({
     form: {
+        ...commonStyles.screenContainerPadding,
         flexDirection: 'column',
         alignItems: 'center',
         flex: 5,
         flexGrow: 5,
-        gap: 10,
+        gap: 15,
         backgroundColor: colors.background
     },
     textInput: {
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
         ...buttonStyles.button,
         flex: 1,
         flexGrow: 1,
-        width: '80%'
+        width: '100%'
     },
     icon: {
         ...buttonStyles.text

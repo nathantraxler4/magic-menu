@@ -6,6 +6,7 @@ import { useQuery } from '@realm/react'
 import { buttonStyles } from '@/app/styles/button'
 import { RecipeSelectBox } from '@/app/components/RecipeSelectBox'
 import colors from '@/app/styles/colors'
+import { commonStyles } from '@/app/styles/common'
 import { generateCompletion } from '@/app/services/index'
 import { groupBy } from 'lodash'
 import { RecipeBookProps } from '@/app/types/props'
@@ -69,14 +70,14 @@ ${result}
 
 const styles = StyleSheet.create({
     container: {
+        ...commonStyles.screenContainerPadding,
         flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: colors.background,
-        paddingVertical: 15
+        backgroundColor: colors.background
     },
     flatlist: {
         flexGrow: 20,
-        width: '80%'
+        width: '100%'
     },
     recipesContainer: {
         flexGrow: 1,
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     submit: {
         ...buttonStyles.button,
         flexGrow: 1,
-        width: '80%'
+        width: '100%'
     },
     icon: {
         ...buttonStyles.text
