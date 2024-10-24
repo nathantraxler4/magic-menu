@@ -1,11 +1,11 @@
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import Recipe from '../models/Recipe'
 
 export type BottomTabParamList = {
     'Recipe Book': undefined
     'Add Recipe': undefined
     Menu: {
-        courses: { name: string; description: string }[]
-        backgroundImage: number
+        selectedRecipes: Realm.Results<Recipe>[]
     }
 }
 

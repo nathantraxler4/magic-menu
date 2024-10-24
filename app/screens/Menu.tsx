@@ -2,19 +2,23 @@ import React /* useEffect, useState */ from 'react'
 import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
 import { MenuProps } from '@/app/types/props'
 import colors from '@/app/styles/colors'
+import { GET_MENUS } from '../queries/queries'
+import { useQuery } from '@apollo/client'
+import localImage from '@/app/assets/images/dinnerMenuBright.webp'
 
 const Menu = ({ route /*, navigation*/ }: MenuProps) => {
-    console.log(route.params.courses)
+    const { loading, error, data } = useQuery(GET_MENUS)
+
+    if (loading) return <Text>Loading...</Text>
+    if (error) return <Text>Error! {error.message}</Text>
+
+    const menu = data.menus[0]
 
     return (
-        <ImageBackground
-            source={route.params.backgroundImage}
-            style={styles.background}
-            resizeMode="cover"
-        >
+        <ImageBackground source={localImage} style={styles.background} resizeMode="cover">
             <View style={styles.listContainer}>
                 <FlatList
-                    data={route.params.courses}
+                    data={menu.courses}
                     contentContainerStyle={styles.container}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (

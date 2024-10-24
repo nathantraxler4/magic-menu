@@ -7,7 +7,6 @@ import { buttonStyles } from '@/app/styles/button'
 import { RecipeSelectBox } from '@/app/components/RecipeSelectBox'
 import colors from '@/app/styles/colors'
 import { commonStyles } from '@/app/styles/common'
-import { generateCompletion } from '@/app/services/index'
 import { groupBy } from 'lodash'
 import { RecipeBookProps } from '@/app/types/props'
 
@@ -28,22 +27,15 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
         [selected]
     )
 
-    const generateMenu = useCallback(async () => {
-        const recipeNamesToRecords = groupBy(recipes, (recipe) => recipe.name)
-        const selectedRecipes = [...selected].map((name) => {
+    const generateMenuButtonHandler = useCallback(async () => {
+        const recipeNamesToRecords: Map<string, Realm.Results<Recipe>[]> = groupBy(
+            recipes,
+            (recipe) => recipe.name
+        )
+        const selectedRecipes: Realm.Results<Recipe>[] = [...selected].map((name) => {
             return recipeNamesToRecords[name][0]
         })
-
-        const result = await generateCompletion(selectedRecipes)
-        console.log(`
-========Result of Generating Menu======
-${result}
-=======================================
-`)
-        navigation.navigate('Menu', {
-            courses: [{ name: 'Course 1', description: 'This is course 1.' }],
-            backgroundImage: 1
-        })
+        navigation.navigate('Menu', { selectedRecipes })
     }, [selected])
 
     return (
@@ -61,7 +53,7 @@ ${result}
                     />
                 )}
             />
-            <Pressable onPress={generateMenu} style={styles.submit}>
+            <Pressable onPress={generateMenuButtonHandler} style={styles.submit}>
                 <Text style={styles.icon}>Generate Image</Text>
             </Pressable>
         </View>
