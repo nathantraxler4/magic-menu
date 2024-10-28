@@ -1,6 +1,13 @@
-import { gql } from '@apollo/client'
+import { gql, TypedDocumentNode } from '@apollo/client'
 
-export const GET_MENUS = gql`
+interface Data {
+    menus: {
+        courses: Array<{ name: string; description: string }>
+        backgroundImage: string
+    }
+}
+
+export const GET_MENUS: TypedDocumentNode<Data> = gql`
     query Menus {
         menus {
             courses {

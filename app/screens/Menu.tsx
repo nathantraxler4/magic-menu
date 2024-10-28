@@ -1,21 +1,22 @@
-import React /* useEffect, useState */ from 'react'
+import React, { Suspense /* useEffect, useState */ } from 'react'
 import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
-import { MenuProps } from '@/app/types/props'
+// import { MenuProps } from '@/app/types/props'
 import colors from '@/app/styles/colors'
 import { GET_MENUS } from '../queries/queries'
-import { useQuery } from '@apollo/client'
-import localImage from '@/app/assets/images/dinnerMenuBright.webp'
+import { useSuspenseQuery } from '@apollo/client'
+import MenuFallback from '@/app/screens/fallback/Menu'
 
-const Menu = ({ route /*, navigation*/ }: MenuProps) => {
-    const { loading, error, data } = useQuery(GET_MENUS)
+const IMAGE_URI = '/Users/nathantraxler/Projects/magic-menu/app/assets/images/dinnerMenuBright.webp'
 
-    if (loading) return <Text>Loading...</Text>
+const MenuContent = (/*{ route, navigation}: MenuProps*/) => {
+    const { error, data } = useSuspenseQuery(GET_MENUS)
+
     if (error) return <Text>Error! {error.message}</Text>
 
     const menu = data.menus[0]
 
     return (
-        <ImageBackground source={localImage} style={styles.background} resizeMode="cover">
+        <ImageBackground source={{ uri: IMAGE_URI }} style={styles.background} resizeMode="cover">
             <View style={styles.listContainer}>
                 <FlatList
                     data={menu.courses}
@@ -61,5 +62,13 @@ const styles = StyleSheet.create({
         color: colors.white
     }
 })
+
+const Menu = (/*{ route, navigation}: MenuProps*/) => {
+    return (
+        <Suspense fallback={<MenuFallback />}>
+            <MenuContent />
+        </Suspense>
+    )
+}
 
 export default Menu

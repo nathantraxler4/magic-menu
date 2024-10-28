@@ -70,7 +70,7 @@ export const AppNonSync = () => {
                                 />
                             )
                         }}
-                    />
+                    ></Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
         </ApolloProvider>
