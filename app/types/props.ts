@@ -1,11 +1,11 @@
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import Recipe from '../models/Recipe'
+import { RecipeInput } from '@/app/__generated__/graphql'
 
 export type BottomTabParamList = {
     'Recipe Book': undefined
     'Add Recipe': undefined
     Menu: {
-        selectedRecipes: Realm.Results<Recipe>[]
+        selectedRecipes: RecipeInput[]
     }
 }
 

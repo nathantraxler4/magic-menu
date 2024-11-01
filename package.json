@@ -2,11 +2,13 @@
     "name": "atlasdevicesdkapp",
     "version": "1.0.0",
     "scripts": {
+        "clean": "npx eslint --fix && npx prettier . --write",
+        "prepare": "husky",
+        "compile": "graphql-codegen",
+        "watch": "graphql-codegen -w",
         "start": "expo start --dev-client",
         "android": "expo run:android",
-        "ios": "expo run:ios",
-        "clean": "npx eslint --fix && npx prettier . --write",
-        "prepare": "husky"
+        "ios": "npm run compile && expo run:ios"
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx}": [
@@ -39,7 +41,11 @@
         "@babel/core": "^7.22.5",
         "@babel/plugin-proposal-decorators": "^7.22.5",
         "@eslint/js": "^9.10.0",
+        "@graphql-codegen/cli": "^5.0.3",
+        "@graphql-codegen/client-preset": "^4.5.0",
+        "@graphql-typed-document-node/core": "^3.2.0",
         "@realm/babel-plugin": "^0.1.1",
+        "@types/lodash": "^4.17.13",
         "@types/react": "~18.2.13",
         "@typescript-eslint/eslint-plugin": "^8.4.0",
         "@typescript-eslint/parser": "^8.4.0",

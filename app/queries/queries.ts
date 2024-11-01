@@ -1,13 +1,6 @@
-import { gql, TypedDocumentNode } from '@apollo/client'
+import { gql } from '@/app/__generated__/gql'
 
-interface Data {
-    menus: {
-        courses: Array<{ name: string; description: string }>
-        backgroundImage: string
-    }
-}
-
-export const GET_MENUS: TypedDocumentNode<Data> = gql`
+export const GET_MENUS = gql(`
     query Menus {
         menus {
             courses {
@@ -17,4 +10,16 @@ export const GET_MENUS: TypedDocumentNode<Data> = gql`
             backgroundImage
         }
     }
-`
+`)
+
+export const GENERATE_MENU = gql(`
+    query GenerateMenu($recipes: [RecipeInput!]!) {
+        generateMenu(recipes: $recipes) {
+            courses {
+                name
+                description
+            }
+            backgroundImage
+        }
+    }
+`)

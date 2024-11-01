@@ -3,7 +3,7 @@ import Recipe from '@/app/models/Recipe'
 /**
  *
  */
-export function deleteRecipes(realm, recipes: Realm.Results<Recipe>) {
+export function deleteRecipes(realm: Realm, recipes: Realm.Results<Recipe>) {
     realm.write(() => {
         realm.delete(recipes)
     })
@@ -13,7 +13,7 @@ export function deleteRecipes(realm, recipes: Realm.Results<Recipe>) {
  *
  */
 export function insertRecipes(
-    realm,
+    realm: Realm,
     recipes: {
         name: string
         directions: string

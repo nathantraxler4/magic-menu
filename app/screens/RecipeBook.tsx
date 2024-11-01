@@ -9,6 +9,8 @@ import colors from '@/app/styles/colors'
 import { commonStyles } from '@/app/styles/common'
 import { groupBy } from 'lodash'
 import { RecipeBookProps } from '@/app/types/props'
+import { RecipeInput } from '@/app/__generated__/graphql'
+import lodash from 'lodash'
 
 export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     const recipes: Realm.Results<Recipe> = useQuery(Recipe)
@@ -28,12 +30,10 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     )
 
     const generateMenuButtonHandler = useCallback(async () => {
-        const recipeNamesToRecords: Map<string, Realm.Results<Recipe>[]> = groupBy(
-            recipes,
-            (recipe) => recipe.name
-        )
-        const selectedRecipes: Realm.Results<Recipe>[] = [...selected].map((name) => {
-            return recipeNamesToRecords[name][0]
+        const recipeNamesToRecords = groupBy(recipes, (recipe) => recipe.name)
+
+        const selectedRecipes: RecipeInput[] = [...selected].map((name) => {
+            return lodash.pick(recipeNamesToRecords[name][0], ['name', 'ingredients', 'directions'])
         })
         navigation.navigate('Menu', { selectedRecipes })
     }, [selected])
