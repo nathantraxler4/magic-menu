@@ -11,7 +11,7 @@ const IMAGE_URI = '/Users/nathantraxler/Projects/magic-menu/app/assets/images/di
 const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
     const { error, data } = useSuspenseQuery(GENERATE_MENU, {
         variables: {
-            recipes: route.params.selectedRecipes
+            recipes: route.params?.selectedRecipes ?? []
         }
     })
 
