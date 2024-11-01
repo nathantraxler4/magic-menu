@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Menu from '@/app/screens/Menu'
 import { AddRecipe } from '@/app/screens/AddRecipe'
-import { RecipeBook } from '@/app/screens/RecipeBook'
+import RecipeBook from '@/app/screens/RecipeBook'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabParamList } from '@/app/types/props'

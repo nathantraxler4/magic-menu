@@ -1,5 +1,15 @@
 import { gql } from '@/app/__generated__/gql'
 
+export const GET_RECIPES = gql(`
+    query Recipes {
+        recipes {
+            name
+            ingredients
+            directions
+        }
+    }
+`)
+
 export const GET_MENUS = gql(`
     query Menus {
         menus {

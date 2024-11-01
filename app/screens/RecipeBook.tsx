@@ -1,20 +1,24 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, Suspense } from 'react'
 import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native'
+import lodash from 'lodash'
 
-import Recipe from '@/app/models/Recipe'
-import { useQuery } from '@realm/react'
 import { buttonStyles } from '@/app/styles/button'
 import { RecipeSelectBox } from '@/app/components/RecipeSelectBox'
 import colors from '@/app/styles/colors'
 import { commonStyles } from '@/app/styles/common'
-import { groupBy } from 'lodash'
 import { RecipeBookProps } from '@/app/types/props'
 import { RecipeInput } from '@/app/__generated__/graphql'
-import lodash from 'lodash'
+import { useSuspenseQuery } from '@apollo/client'
+import RecipeBookFallback from '@/app/screens/fallback/RecipeBook'
+import { GET_RECIPES } from '@/app/queries/queries'
 
-export const RecipeBook = ({ navigation }: RecipeBookProps) => {
-    const recipes: Realm.Results<Recipe> = useQuery(Recipe)
+const RecipeBookContent = ({ navigation }: RecipeBookProps) => {
+    const { error, data } = useSuspenseQuery(GET_RECIPES)
     const [selected, setSelected] = useState(new Set<string>())
+
+    if (error) return <Text>There was an error!</Text>
+
+    const recipes = data.recipes
 
     const toggleSelected = useCallback(
         (name: string) => {
@@ -30,7 +34,7 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     )
 
     const generateMenuButtonHandler = useCallback(async () => {
-        const recipeNamesToRecords = groupBy(recipes, (recipe) => recipe.name)
+        const recipeNamesToRecords = lodash.groupBy(recipes, (recipe) => recipe.name)
 
         const selectedRecipes: RecipeInput[] = [...selected].map((name) => {
             return lodash.pick(recipeNamesToRecords[name][0], ['name', 'ingredients', 'directions'])
@@ -60,6 +64,14 @@ export const RecipeBook = ({ navigation }: RecipeBookProps) => {
     )
 }
 
+const RecipeBook = ({ route, navigation }: RecipeBookProps) => {
+    return (
+        <Suspense fallback={<RecipeBookFallback />}>
+            <RecipeBookContent route={route} navigation={navigation} />
+        </Suspense>
+    )
+}
+
 const styles = StyleSheet.create({
     container: {
         ...commonStyles.screenContainerPadding,
@@ -84,3 +96,5 @@ const styles = StyleSheet.create({
         ...buttonStyles.text
     }
 })
+
+export default RecipeBook

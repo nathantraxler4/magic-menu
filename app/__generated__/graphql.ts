@@ -36,16 +36,31 @@ export type Query = {
     __typename?: 'Query'
     generateMenu: Menu
     menus?: Maybe<Array<Maybe<Menu>>>
+    recipes: Array<Recipe>
 }
 
 export type QueryGenerateMenuArgs = {
     recipes: Array<RecipeInput>
 }
 
+export type Recipe = {
+    __typename?: 'Recipe'
+    directions: Scalars['String']['output']
+    ingredients: Scalars['String']['output']
+    name: Scalars['String']['output']
+}
+
 export type RecipeInput = {
     directions: Scalars['String']['input']
     ingredients: Scalars['String']['input']
     name: Scalars['String']['input']
+}
+
+export type RecipesQueryVariables = Exact<{ [key: string]: never }>
+
+export type RecipesQuery = {
+    __typename?: 'Query'
+    recipes: Array<{ __typename?: 'Recipe'; name: string; ingredients: string; directions: string }>
 }
 
 export type MenusQueryVariables = Exact<{ [key: string]: never }>
@@ -72,6 +87,33 @@ export type GenerateMenuQuery = {
     }
 }
 
+export const RecipesDocument = {
+    kind: 'Document',
+    definitions: [
+        {
+            kind: 'OperationDefinition',
+            operation: 'query',
+            name: { kind: 'Name', value: 'Recipes' },
+            selectionSet: {
+                kind: 'SelectionSet',
+                selections: [
+                    {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'recipes' },
+                        selectionSet: {
+                            kind: 'SelectionSet',
+                            selections: [
+                                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'ingredients' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'directions' } }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+} as unknown as DocumentNode<RecipesQuery, RecipesQueryVariables>
 export const MenusDocument = {
     kind: 'Document',
     definitions: [
