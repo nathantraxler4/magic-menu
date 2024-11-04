@@ -8,7 +8,7 @@
         "watch": "graphql-codegen -w",
         "start": "expo start --dev-client",
         "android": "expo run:android",
-        "ios": "npm run compile && expo run:ios"
+        "ios": "npm run codegen && expo run:ios"
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx}": [
