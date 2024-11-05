@@ -1,11 +1,11 @@
 {
     "expo": {
-        "name": "AtlasDeviceSdkApp",
-        "slug": "AtlasDeviceSdkApp",
+        "name": "MagicMenu",
+        "slug": "MagicMenu",
         "version": "1.0.0",
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "bundleIdentifier": "com.nathan.ExampleRealmApp",
+            "bundleIdentifier": "com.nathan.MagicMenu",
             "supportsTablet": true
         }
     }

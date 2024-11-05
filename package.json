@@ -1,5 +1,5 @@
 {
-    "name": "atlasdevicesdkapp",
+    "name": "magic-menu",
     "version": "1.0.0",
     "scripts": {
         "clean": "npx eslint --fix && npx prettier . --write",
@@ -21,7 +21,6 @@
         "@react-navigation/bottom-tabs": "^6.6.1",
         "@react-navigation/native": "^6.1.18",
         "@react-navigation/native-stack": "^6.11.0",
-        "@realm/react": "^0.6.0",
         "axios": "^1.7.6",
         "expo": "^49.0.8",
         "expo-dev-client": "~2.4.13",
@@ -34,7 +33,6 @@
         "react-native-safe-area-context": "4.6.3",
         "react-native-screens": "~3.22.0",
         "react-native-vector-icons": "^10.2.0",
-        "realm": "12.0.0",
         "ts-node": "^10.9.2"
     },
     "devDependencies": {
@@ -44,7 +42,6 @@
         "@graphql-codegen/cli": "^5.0.3",
         "@graphql-codegen/client-preset": "^4.5.0",
         "@graphql-typed-document-node/core": "^3.2.0",
-        "@realm/babel-plugin": "^0.1.1",
         "@types/lodash": "^4.17.13",
         "@types/react": "~18.2.13",
         "@types/react-native-vector-icons": "^6.4.18",

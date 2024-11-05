@@ -2,8 +2,6 @@ import React, { useState, useCallback } from 'react'
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native'
 
 import { buttonStyles } from '@/app/styles/button'
-import { useRealm } from '@realm/react'
-import * as recipeRepo from '@/app/repositories/recipe'
 import { textInputStyles } from '@/app/styles/textInput'
 import { commonStyles } from '@/app/styles/common'
 import colors from '@/app/styles/colors'
@@ -12,7 +10,6 @@ export const AddRecipe = () => {
     const [name, setName] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [directions, setDirections] = useState('')
-    const realm = useRealm()
 
     const handleAddRecipe = useCallback(
         (name: string, ingredients: string, directions: string): void => {
@@ -21,23 +18,9 @@ export const AddRecipe = () => {
                 return
             }
 
-            // Everything in the function passed to "realm.write" is a transaction and will
-            // hence succeed or fail together. A transcation is the smallest unit of transfer
-            // in Realm so we want to be mindful of how much we put into one single transaction
-            // and split them up if appropriate (more commonly seen server side). Since clients
-            // may occasionally be online during short time spans we want to increase the probability
-            // of sync participants to successfully sync everything in the transaction, otherwise
-            // no changes propagate and the transaction needs to start over when connectivity allows.
-            recipeRepo.insertRecipes(realm, [
-                {
-                    name,
-                    ingredients: ingredients,
-                    directions: directions,
-                    userId: 'Nathan'
-                }
-            ])
+            // TODO: Create and use GraphQL add recipe api
         },
-        [realm]
+        []
     )
 
     const handleSubmit = () => {
