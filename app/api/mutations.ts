@@ -1,4 +1,4 @@
-import { gql } from '@/app/__generated__/gql'
+import { gql } from '@/app/__generated__/gql';
 
 export const ADD_RECIPES = gql(`
     mutation AddRecipes($recipes: [RecipeInput!]!) {
@@ -8,4 +8,4 @@ export const ADD_RECIPES = gql(`
             directions
         }
     }
-`)
+`);

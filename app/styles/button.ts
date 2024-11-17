@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import colors from '@/app/styles/colors'
+import { StyleSheet } from 'react-native';
+import colors from '@/app/styles/colors';
 
 export const buttonStyles: StyleSheet.NamedStyles<{ button: object; text: object }> = {
     button: {
@@ -14,4 +14,4 @@ export const buttonStyles: StyleSheet.NamedStyles<{ button: object; text: object
         textAlign: 'center',
         color: colors.white
     }
-}
+};

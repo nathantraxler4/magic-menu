@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import colors from '@/app/styles/colors'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import colors from '@/app/styles/colors';
 
 // Currently the same as MenuFallback but created to eventually be improved.
 const RecipeBookLoading = () => {
@@ -8,8 +8,8 @@ const RecipeBookLoading = () => {
         <View style={styles.container}>
             <Text style={styles.text}>Loading...</Text>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: 28
     }
-})
+});
 
-export default RecipeBookLoading
+export default RecipeBookLoading;

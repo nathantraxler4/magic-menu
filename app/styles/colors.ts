@@ -11,6 +11,6 @@ const colors = {
     lighterAccent: '#EEC6DD',
     textBackdrop: '#00000077',
     error: '#DC2323'
-}
+};
 
-export default colors
+export default colors;

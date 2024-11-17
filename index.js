@@ -1,6 +1,6 @@
-import 'expo-dev-client'
-import 'react-native-get-random-values'
-import { registerRootComponent } from 'expo'
-import { App } from '@/app/App'
+import 'expo-dev-client';
+import 'react-native-get-random-values';
+import { registerRootComponent } from 'expo';
+import { App } from '@/app/App';
 
-registerRootComponent(App)
+registerRootComponent(App);

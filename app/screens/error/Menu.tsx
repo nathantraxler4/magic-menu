@@ -1,14 +1,14 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import colors from '@/app/styles/colors'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import colors from '@/app/styles/colors';
 
 const MenuError = ({ message }: { message: string }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{message}</Text>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
         color: colors.error,
         fontSize: 28
     }
-})
+});
 
-export default MenuError
+export default MenuError;

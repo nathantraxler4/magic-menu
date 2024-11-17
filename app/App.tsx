@@ -1,22 +1,22 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet } from 'react-native'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Menu from '@/app/screens/Menu'
-import { AddRecipe } from '@/app/screens/AddRecipe'
-import RecipeBook from '@/app/screens/RecipeBook'
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { BottomTabParamList } from '@/app/types/props'
-import colors from '@/app/styles/colors'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import Menu from '@/app/screens/Menu';
+import { AddRecipe } from '@/app/screens/AddRecipe';
+import RecipeBook from '@/app/screens/RecipeBook';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabParamList } from '@/app/types/props';
+import colors from '@/app/styles/colors';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000',
     cache: new InMemoryCache()
-})
+});
 
-const Tab = createBottomTabNavigator<BottomTabParamList>()
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 export const App = () => {
     return (
@@ -76,8 +76,8 @@ export const App = () => {
                 </NavigationContainer>
             </ApolloProvider>
         </SafeAreaView>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     screen: {
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
     tabBarLabelStyle: {
         color: colors.accent
     }
-})
+});

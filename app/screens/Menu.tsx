@@ -1,13 +1,14 @@
-import React, { Suspense /* useEffect, useState */ } from 'react'
-import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
-import { MenuProps } from '@/app/types/props'
-import colors from '@/app/styles/colors'
-import { /*GET_MENUS*/ GENERATE_MENU } from '../api/queries'
-import { useSuspenseQuery } from '@apollo/client'
-import MenuLoading from '@/app/screens/loading/Menu'
-import MenuError from '@/app/screens/error/Menu'
+import React, { Suspense /* useEffect, useState */ } from 'react';
+import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native';
+import { MenuProps } from '@/app/types/props';
+import colors from '@/app/styles/colors';
+import { /*GET_MENUS*/ GENERATE_MENU } from '../api/queries';
+import { useSuspenseQuery } from '@apollo/client';
+import MenuLoading from '@/app/screens/loading/Menu';
+import MenuError from '@/app/screens/error/Menu';
 
-const IMAGE_URI = '/Users/nathantraxler/Projects/magic-menu/app/assets/images/dinnerMenuBright.webp'
+const IMAGE_URI =
+    '/Users/nathantraxler/Projects/magic-menu/app/assets/images/dinnerMenuBright.webp';
 
 const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
     const { error, data } = useSuspenseQuery(GENERATE_MENU, {
@@ -15,11 +16,11 @@ const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
             recipes: route.params?.selectedRecipes ?? []
         },
         errorPolicy: 'all'
-    })
+    });
 
-    if (error || !data) return <MenuError message={error?.message ?? 'An error occured!'} />
+    if (error || !data) return <MenuError message={error?.message ?? 'An error occured!'} />;
 
-    const menu = data.generateMenu
+    const menu = data.generateMenu;
 
     return (
         <ImageBackground source={{ uri: IMAGE_URI }} style={styles.background} resizeMode="cover">
@@ -37,16 +38,16 @@ const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
                 />
             </View>
         </ImageBackground>
-    )
-}
+    );
+};
 
 const Menu = ({ route, navigation }: MenuProps) => {
     return (
         <Suspense fallback={<MenuLoading />}>
             <MenuContent route={route} navigation={navigation} />
         </Suspense>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     background: {
@@ -74,6 +75,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: colors.white
     }
-})
+});
 
-export default Menu
+export default Menu;

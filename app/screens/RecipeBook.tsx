@@ -1,46 +1,50 @@
-import React, { useState, useCallback, Suspense } from 'react'
-import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native'
-import lodash from 'lodash'
+import React, { useState, useCallback, Suspense } from 'react';
+import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
+import lodash from 'lodash';
 
-import { buttonStyles } from '@/app/styles/button'
-import { RecipeSelectBox } from '@/app/components/RecipeSelectBox'
-import colors from '@/app/styles/colors'
-import { commonStyles } from '@/app/styles/common'
-import { RecipeBookProps } from '@/app/types/props'
-import { RecipeInput } from '@/app/__generated__/graphql'
-import { useSuspenseQuery } from '@apollo/client'
-import RecipeBookLoading from '@/app/screens/loading/RecipeBook'
-import { GET_RECIPES } from '@/app/api/queries'
+import { buttonStyles } from '@/app/styles/button';
+import { RecipeSelectBox } from '@/app/components/RecipeSelectBox';
+import colors from '@/app/styles/colors';
+import { commonStyles } from '@/app/styles/common';
+import { RecipeBookProps } from '@/app/types/props';
+import { RecipeInput } from '@/app/__generated__/graphql';
+import { useSuspenseQuery } from '@apollo/client';
+import RecipeBookLoading from '@/app/screens/loading/RecipeBook';
+import { GET_RECIPES } from '@/app/api/queries';
 
 const RecipeBookContent = ({ navigation }: RecipeBookProps) => {
-    const { error, data } = useSuspenseQuery(GET_RECIPES)
-    const [selected, setSelected] = useState(new Set<string>())
+    const { error, data } = useSuspenseQuery(GET_RECIPES);
+    const [selected, setSelected] = useState(new Set<string>());
 
-    if (error) return <Text>There was an error!</Text>
+    if (error) return <Text>There was an error!</Text>;
 
-    const recipes = data.recipes
+    const recipes = data.recipes;
 
     const toggleSelected = useCallback(
         (name: string) => {
             if (selected.has(name)) {
-                const selectedCopy = new Set<string>(selected)
-                selectedCopy.delete(name)
-                setSelected(selectedCopy)
+                const selectedCopy = new Set<string>(selected);
+                selectedCopy.delete(name);
+                setSelected(selectedCopy);
             } else {
-                setSelected(new Set([...selected, name]))
+                setSelected(new Set([...selected, name]));
             }
         },
         [selected]
-    )
+    );
 
     const generateMenuButtonHandler = useCallback(async () => {
-        const recipeNamesToRecords = lodash.groupBy(recipes, (recipe) => recipe.name)
+        const recipeNamesToRecords = lodash.groupBy(recipes, (recipe) => recipe.name);
 
         const selectedRecipes: RecipeInput[] = [...selected].map((name) => {
-            return lodash.pick(recipeNamesToRecords[name][0], ['name', 'ingredients', 'directions'])
-        })
-        navigation.navigate('Menu', { selectedRecipes })
-    }, [selected])
+            return lodash.pick(recipeNamesToRecords[name][0], [
+                'name',
+                'ingredients',
+                'directions'
+            ]);
+        });
+        navigation.navigate('Menu', { selectedRecipes });
+    }, [selected]);
 
     return (
         <View style={styles.container}>
@@ -61,16 +65,16 @@ const RecipeBookContent = ({ navigation }: RecipeBookProps) => {
                 <Text style={styles.icon}>Generate Image</Text>
             </Pressable>
         </View>
-    )
-}
+    );
+};
 
 const RecipeBook = ({ route, navigation }: RecipeBookProps) => {
     return (
         <Suspense fallback={<RecipeBookLoading />}>
             <RecipeBookContent route={route} navigation={navigation} />
         </Suspense>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -95,6 +99,6 @@ const styles = StyleSheet.create({
     icon: {
         ...buttonStyles.text
     }
-})
+});
 
-export default RecipeBook
+export default RecipeBook;

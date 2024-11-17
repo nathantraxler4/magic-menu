@@ -1,9 +1,9 @@
-import { StyleSheet, Platform } from 'react-native'
-import colors from '@/app/styles/colors'
+import { StyleSheet, Platform } from 'react-native';
+import colors from '@/app/styles/colors';
 
 export const selectableStyles: StyleSheet.NamedStyles<{
-    selectableContainer: object
-    textCenter: object
+    selectableContainer: object;
+    textCenter: object;
 }> = {
     selectableContainer: {
         flex: 1,
@@ -19,4 +19,4 @@ export const selectableStyles: StyleSheet.NamedStyles<{
         paddingHorizontal: 15,
         paddingVertical: Platform.OS === 'ios' ? 15 : 0
     }
-}
+};

@@ -1,4 +1,4 @@
-import { gql } from '@/app/__generated__/gql'
+import { gql } from '@/app/__generated__/gql';
 
 export const GET_RECIPES = gql(`
     query Recipes {
@@ -8,7 +8,7 @@ export const GET_RECIPES = gql(`
             directions
         }
     }
-`)
+`);
 
 export const GET_MENUS = gql(`
     query Menus {
@@ -20,7 +20,7 @@ export const GET_MENUS = gql(`
             backgroundImage
         }
     }
-`)
+`);
 
 export const GENERATE_MENU = gql(`
     query GenerateMenu($recipes: [RecipeInput!]!) {
@@ -32,4 +32,4 @@ export const GENERATE_MENU = gql(`
             backgroundImage
         }
     }
-`)
+`);

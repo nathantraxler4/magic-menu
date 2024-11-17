@@ -1,6 +1,6 @@
 /* eslint-disable */
-import * as types from './graphql'
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
+import * as types from './graphql';
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
 /**
  * Map of all GraphQL operations in the project.
@@ -22,7 +22,7 @@ const documents = {
         types.MenusDocument,
     '\n    query GenerateMenu($recipes: [RecipeInput!]!) {\n        generateMenu(recipes: $recipes) {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n':
         types.GenerateMenuDocument
-}
+};
 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -36,36 +36,36 @@ const documents = {
  * The query argument is unknown!
  * Please regenerate the types.
  */
-export function gql(source: string): unknown
+export function gql(source: string): unknown;
 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
     source: '\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n'
-): (typeof documents)['\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n']
+): (typeof documents)['\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n'];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
     source: '\n    query Recipes {\n        recipes {\n            name\n            ingredients\n            directions\n        }\n    }\n'
-): (typeof documents)['\n    query Recipes {\n        recipes {\n            name\n            ingredients\n            directions\n        }\n    }\n']
+): (typeof documents)['\n    query Recipes {\n        recipes {\n            name\n            ingredients\n            directions\n        }\n    }\n'];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
     source: '\n    query Menus {\n        menus {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n'
-): (typeof documents)['\n    query Menus {\n        menus {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n']
+): (typeof documents)['\n    query Menus {\n        menus {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n'];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
     source: '\n    query GenerateMenu($recipes: [RecipeInput!]!) {\n        generateMenu(recipes: $recipes) {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n'
-): (typeof documents)['\n    query GenerateMenu($recipes: [RecipeInput!]!) {\n        generateMenu(recipes: $recipes) {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n']
+): (typeof documents)['\n    query GenerateMenu($recipes: [RecipeInput!]!) {\n        generateMenu(recipes: $recipes) {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n'];
 
 export function gql(source: string) {
-    return (documents as any)[source] ?? {}
+    return (documents as any)[source] ?? {};
 }
 
 export type DocumentType<TDocumentNode extends DocumentNode<any, any>> =
-    TDocumentNode extends DocumentNode<infer TType, any> ? TType : never
+    TDocumentNode extends DocumentNode<infer TType, any> ? TType : never;
