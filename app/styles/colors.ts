@@ -1,7 +1,5 @@
 const colors = {
-    darkBlue: '#2A3642',
     purple: '#6E60F9',
-    purpleDark: '#4238a6',
     lightGray: '#AAAAAA',
     darkGray: '#2F4F4F',
     white: '#FFFFFF',
@@ -11,7 +9,8 @@ const colors = {
     textBackground: '#292929',
     accent: '#CC5599',
     lighterAccent: '#EEC6DD',
-    textBackdrop: '#00000077'
+    textBackdrop: '#00000077',
+    error: '#DC2323'
 }
 
 export default colors

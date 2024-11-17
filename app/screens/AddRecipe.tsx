@@ -5,20 +5,23 @@ import { buttonStyles } from '@/app/styles/button'
 import { textInputStyles } from '@/app/styles/textInput'
 import { commonStyles } from '@/app/styles/common'
 import colors from '@/app/styles/colors'
+import { ADD_RECIPES } from '@/app/api/mutations'
+import { useMutation } from '@apollo/client'
 
 export const AddRecipe = () => {
     const [name, setName] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [directions, setDirections] = useState('')
+    const [addRecipes, { loading, error }] = useMutation(ADD_RECIPES)
 
     const handleAddRecipe = useCallback(
         (name: string, ingredients: string, directions: string): void => {
             if (!ingredients || !name || !directions) {
-                console.log('[handleAddRecipe] Must provide name, ingredients, and directions.')
+                console.log('Must provide name, ingredients, and directions.')
                 return
             }
 
-            // TODO: Create and use GraphQL add recipe api
+            addRecipes({ variables: { recipes: [{ name, ingredients, directions }] } })
         },
         []
     )
@@ -29,6 +32,9 @@ export const AddRecipe = () => {
         setIngredients('')
         setDirections('')
     }
+
+    if (loading) return <Text>Submitting...</Text>
+    if (error) return <Text>{`Submission error! ${error.message}`}.</Text>
 
     return (
         <View style={styles.form}>

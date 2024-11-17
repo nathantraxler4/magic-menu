@@ -6,7 +6,7 @@
         "prepare": "husky",
         "codegen": "graphql-codegen",
         "watch": "graphql-codegen -w",
-        "start": "expo start --dev-client",
+        "start": "npm run codegen && expo start --dev-client",
         "android": "expo run:android",
         "ios": "npm run codegen && expo run:ios"
     },

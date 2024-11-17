@@ -2,9 +2,10 @@ import React, { Suspense /* useEffect, useState */ } from 'react'
 import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native'
 import { MenuProps } from '@/app/types/props'
 import colors from '@/app/styles/colors'
-import { /*GET_MENUS*/ GENERATE_MENU } from '../queries/queries'
+import { /*GET_MENUS*/ GENERATE_MENU } from '../api/queries'
 import { useSuspenseQuery } from '@apollo/client'
-import MenuFallback from '@/app/screens/fallback/Menu'
+import MenuLoading from '@/app/screens/loading/Menu'
+import MenuError from '@/app/screens/error/Menu'
 
 const IMAGE_URI = '/Users/nathantraxler/Projects/magic-menu/app/assets/images/dinnerMenuBright.webp'
 
@@ -12,10 +13,11 @@ const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
     const { error, data } = useSuspenseQuery(GENERATE_MENU, {
         variables: {
             recipes: route.params?.selectedRecipes ?? []
-        }
+        },
+        errorPolicy: 'all'
     })
 
-    if (error) return <Text>Error! {error.message}</Text>
+    if (error || !data) return <MenuError message={error?.message ?? 'An error occured!'} />
 
     const menu = data.generateMenu
 
@@ -40,7 +42,7 @@ const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
 
 const Menu = ({ route, navigation }: MenuProps) => {
     return (
-        <Suspense fallback={<MenuFallback />}>
+        <Suspense fallback={<MenuLoading />}>
             <MenuContent route={route} navigation={navigation} />
         </Suspense>
     )

@@ -32,6 +32,15 @@ export type Menu = {
     courses: Array<Course>
 }
 
+export type Mutation = {
+    __typename?: 'Mutation'
+    addRecipes: Array<Recipe>
+}
+
+export type MutationAddRecipesArgs = {
+    recipes: Array<RecipeInput>
+}
+
 export type Query = {
     __typename?: 'Query'
     generateMenu: Menu
@@ -54,6 +63,20 @@ export type RecipeInput = {
     directions: Scalars['String']['input']
     ingredients: Scalars['String']['input']
     name: Scalars['String']['input']
+}
+
+export type AddRecipesMutationVariables = Exact<{
+    recipes: Array<RecipeInput> | RecipeInput
+}>
+
+export type AddRecipesMutation = {
+    __typename?: 'Mutation'
+    addRecipes: Array<{
+        __typename?: 'Recipe'
+        name: string
+        ingredients: string
+        directions: string
+    }>
 }
 
 export type RecipesQueryVariables = Exact<{ [key: string]: never }>
@@ -87,6 +110,62 @@ export type GenerateMenuQuery = {
     }
 }
 
+export const AddRecipesDocument = {
+    kind: 'Document',
+    definitions: [
+        {
+            kind: 'OperationDefinition',
+            operation: 'mutation',
+            name: { kind: 'Name', value: 'AddRecipes' },
+            variableDefinitions: [
+                {
+                    kind: 'VariableDefinition',
+                    variable: { kind: 'Variable', name: { kind: 'Name', value: 'recipes' } },
+                    type: {
+                        kind: 'NonNullType',
+                        type: {
+                            kind: 'ListType',
+                            type: {
+                                kind: 'NonNullType',
+                                type: {
+                                    kind: 'NamedType',
+                                    name: { kind: 'Name', value: 'RecipeInput' }
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            selectionSet: {
+                kind: 'SelectionSet',
+                selections: [
+                    {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'addRecipes' },
+                        arguments: [
+                            {
+                                kind: 'Argument',
+                                name: { kind: 'Name', value: 'recipes' },
+                                value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'recipes' }
+                                }
+                            }
+                        ],
+                        selectionSet: {
+                            kind: 'SelectionSet',
+                            selections: [
+                                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'ingredients' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'directions' } }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+} as unknown as DocumentNode<AddRecipesMutation, AddRecipesMutationVariables>
 export const RecipesDocument = {
     kind: 'Document',
     definitions: [

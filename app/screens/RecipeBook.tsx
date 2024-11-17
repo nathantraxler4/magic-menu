@@ -9,8 +9,8 @@ import { commonStyles } from '@/app/styles/common'
 import { RecipeBookProps } from '@/app/types/props'
 import { RecipeInput } from '@/app/__generated__/graphql'
 import { useSuspenseQuery } from '@apollo/client'
-import RecipeBookFallback from '@/app/screens/fallback/RecipeBook'
-import { GET_RECIPES } from '@/app/queries/queries'
+import RecipeBookLoading from '@/app/screens/loading/RecipeBook'
+import { GET_RECIPES } from '@/app/api/queries'
 
 const RecipeBookContent = ({ navigation }: RecipeBookProps) => {
     const { error, data } = useSuspenseQuery(GET_RECIPES)
@@ -66,7 +66,7 @@ const RecipeBookContent = ({ navigation }: RecipeBookProps) => {
 
 const RecipeBook = ({ route, navigation }: RecipeBookProps) => {
     return (
-        <Suspense fallback={<RecipeBookFallback />}>
+        <Suspense fallback={<RecipeBookLoading />}>
             <RecipeBookContent route={route} navigation={navigation} />
         </Suspense>
     )

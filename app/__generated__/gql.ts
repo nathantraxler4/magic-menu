@@ -14,6 +14,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    '\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n':
+        types.AddRecipesDocument,
     '\n    query Recipes {\n        recipes {\n            name\n            ingredients\n            directions\n        }\n    }\n':
         types.RecipesDocument,
     '\n    query Menus {\n        menus {\n            courses {\n                name\n                description\n            }\n            backgroundImage\n        }\n    }\n':
@@ -36,6 +38,12 @@ const documents = {
  */
 export function gql(source: string): unknown
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+    source: '\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n'
+): (typeof documents)['\n    mutation AddRecipes($recipes: [RecipeInput!]!) {\n        addRecipes(recipes: $recipes) {\n            name\n            ingredients\n            directions\n        }\n    }\n']
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

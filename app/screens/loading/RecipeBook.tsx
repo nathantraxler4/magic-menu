@@ -2,7 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import colors from '@/app/styles/colors'
 
-const MenuFallback = () => {
+// Currently the same as MenuFallback but created to eventually be improved.
+const RecipeBookLoading = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Loading...</Text>
@@ -23,4 +24,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MenuFallback
+export default RecipeBookLoading
