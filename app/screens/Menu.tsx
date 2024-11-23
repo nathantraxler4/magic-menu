@@ -7,9 +7,6 @@ import { useSuspenseQuery } from '@apollo/client';
 import MenuLoading from '@/app/screens/loading/Menu';
 import MenuError from '@/app/screens/error/Menu';
 
-const IMAGE_URI =
-    '/Users/nathantraxler/Projects/magic-menu/app/assets/images/dinnerMenuBright.webp';
-
 const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
     const { error, data } = useSuspenseQuery(GENERATE_MENU, {
         variables: {
@@ -23,7 +20,11 @@ const MenuContent = ({ route /* navigation*/ }: MenuProps) => {
     const menu = data.generateMenu;
 
     return (
-        <ImageBackground source={{ uri: IMAGE_URI }} style={styles.background} resizeMode="cover">
+        <ImageBackground
+            source={{ uri: menu.backgroundImage }}
+            style={styles.background}
+            resizeMode="cover"
+        >
             <View style={styles.listContainer}>
                 <FlatList
                     data={menu.courses}

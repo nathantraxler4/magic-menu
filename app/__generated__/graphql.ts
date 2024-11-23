@@ -28,7 +28,7 @@ export type Course = {
 
 export type Menu = {
     __typename?: 'Menu';
-    backgroundImage: Scalars['Int']['output'];
+    backgroundImage: Scalars['String']['output'];
     courses: Array<Course>;
 };
 
@@ -97,7 +97,7 @@ export type MenusQuery = {
     __typename?: 'Query';
     menus?: Array<{
         __typename?: 'Menu';
-        backgroundImage: number;
+        backgroundImage: string;
         courses: Array<{ __typename?: 'Course'; name: string; description: string }>;
     } | null> | null;
 };
@@ -110,7 +110,7 @@ export type GenerateMenuQuery = {
     __typename?: 'Query';
     generateMenu: {
         __typename?: 'Menu';
-        backgroundImage: number;
+        backgroundImage: string;
         courses: Array<{ __typename?: 'Course'; name: string; description: string }>;
     };
 };

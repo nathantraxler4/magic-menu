@@ -9,7 +9,7 @@ const colors = {
     textBackground: '#292929',
     accent: '#CC5599',
     lighterAccent: '#EEC6DD',
-    textBackdrop: '#00000077',
+    textBackdrop: '#000000AA',
     error: '#DC2323'
 };
 
